@@ -7,17 +7,15 @@ const CommentForm = ({ thoughtId }: any) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  // The useMutation hook returns an array, which includes our addComment function
   const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      // We call the addComment function when the comment form submits, and give the variables argument needed to complete the query
       await addComment({
-        variables: {
-          thoughtId, commentText
+        variables: { 
+          thoughtId, commentText 
         }
       });
 
@@ -59,7 +57,7 @@ const CommentForm = ({ thoughtId }: any) => {
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
-          />
+          ></textarea>
         </div>
 
         <div className="col-12 col-lg-3">

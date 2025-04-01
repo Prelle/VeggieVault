@@ -1,4 +1,3 @@
-import type React from 'react';
 interface Comment {
   _id: string;
   createdAt: string;
@@ -24,7 +23,8 @@ const CommentList: React.FC<CommentListProps> = ({ comments = [] }) => {
         Comments
       </h3>
       <div className="flex-row my-4">
-        {comments?.map((comment) => (
+        {comments &&
+          comments.map((comment) => (
             <div key={comment._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">

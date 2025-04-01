@@ -1,59 +1,78 @@
-import { Thought } from '../models/index.js';
+import { User } from '../models/index.js';
+import { signToken, AuthenticationError } from '../utils/auth.js'; 
 
 // Define types for the arguments
-interface ThoughtArgs {
-  thoughtId: string;
+interface AddUserArgs {
+  input:{
+    username: string;
+    email: string;
+    password: string;
+  }
 }
 
-interface AddThoughtArgs {
-  thoughtText: string;
-  thoughtAuthor: string;
+interface LoginUserArgs {
+  email: string;
+  password: string;
 }
 
-interface AddCommentArgs {
-  thoughtId: string;
-  commentText: string;
-}
-
-interface RemoveCommentArgs {
-  thoughtId: string;
-  commentId: string;
+interface UserArgs {
+  username: string;
 }
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
+    users: async () => {
+      return User.find()
     },
-    thought: async (_parent: unknown, { thoughtId }: ThoughtArgs) => {
-      return await Thought.findOne({ _id: thoughtId });
+    user: async (_parent: any, { username }: UserArgs) => {
+      return User.findOne({ username })
+    },
+  
+    // Query to get the authenticated user's information
+    // The 'me' query relies on the context to check if the user is authenticated
+    me: async (_parent: any, _args: any, context: any) => {
+      // If the user is authenticated, find and return the user's information along with their thoughts
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
+      }
+      // If the user is not authenticated, throw an AuthenticationError
+      throw new AuthenticationError('Could not authenticate user.');
     },
   },
   Mutation: {
-    addThought: async (_parent: unknown, { thoughtText, thoughtAuthor }: AddThoughtArgs) => {
-      return await Thought.create({ thoughtText, thoughtAuthor });
+    addUser: async (_parent: any, { input }: AddUserArgs) => {
+      // Create a new user with the provided username, email, and password
+      const user = await User.create({ ...input });
+    
+      // Sign a token with the user's information
+      const token = signToken(user.username, user.email, user._id);
+    
+      // Return the token and the user
+      return { token, user };
     },
-    addComment: async (_parent: unknown, { thoughtId, commentText }: AddCommentArgs) => {
-      return await Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    removeThought: async (_parent: unknown, { thoughtId }: ThoughtArgs) => {
-      return await Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (_parent: unknown, { thoughtId, commentId }: RemoveCommentArgs) => {
-      return await Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
+    
+    login: async (_parent: any, { email, password }: LoginUserArgs) => {
+      // Find a user with the provided email
+      const user = await User.findOne({ email });
+    
+      // If no user is found, throw an AuthenticationError
+      if (!user) {
+        throw new AuthenticationError('Could not authenticate user.');
+      }
+    
+      // Check if the provided password is correct
+      const correctPw = await user.isCorrectPassword(password);
+    
+      // If the password is incorrect, throw an AuthenticationError
+      if (!correctPw) {
+        throw new AuthenticationError('Could not authenticate user.');
+      }
+    
+      // Sign a token with the user's information
+      const token = signToken(user.username, user.email, user._id);
+    
+      // Return the token and the user
+      return { token, user };
     },
   },
 };
