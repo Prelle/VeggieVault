@@ -1,36 +1,41 @@
 import { Schema, model, Document, ObjectId } from 'mongoose';
 
-interface ISeedBoxEntry extends Document {
-    plantId: ObjectId;
-    varietyId: string;
+interface ISeedBoxEntry extends Document {    
+    plant: ObjectId;
+    variety: string;
     frostHardy: boolean;
     sowDate: Date;
+    notes: string;
 }
 
 interface ISeedBox extends Document {
-    userId: ObjectId;
+    user: ObjectId;
     entries: ISeedBoxEntry[];
 }
 
 const seedBoxEntrySchema = new Schema<ISeedBoxEntry>(
     {
-        plantId: {
+        plant: {
             type: Schema.Types.ObjectId,
             ref: 'Plant',
             required: true
         },
-        varietyId: {
+        variety: {
             type: String,
             required: true,
         },
         frostHardy: {
             type: Boolean,
-            required: true,
+            required: false,
         },
         sowDate: {
             type: Date,
-            required: true,
+            required: false,
         },
+        notes: {
+            type: String,
+            required: false,
+        }
     },
     {
         timestamps: true,
@@ -41,7 +46,7 @@ const seedBoxEntrySchema = new Schema<ISeedBoxEntry>(
 
 const seedBoxSchema = new Schema<ISeedBox>(
     {
-        userId: {
+        user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
