@@ -1,4 +1,4 @@
-import { User } from '../models/index.js';
+import { User, Plant, SeedBox } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
 
 // Define types for the arguments
@@ -38,6 +38,15 @@ const resolvers = {
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
     },
+
+    plants: async () => {
+      return Plant.find();
+    },
+
+    seedBoxes: async () => {
+      return SeedBox.find();
+    },
+
   },
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs) => {
