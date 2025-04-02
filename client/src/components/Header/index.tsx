@@ -10,11 +10,11 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3">
+    <header>
       <div className="container header-container">
         {/* Title on the left */}
         <div>
-          <h1 className="m-0">Veggie Vault</h1>
+          <h1>Veggie Vault</h1>
         </div>
         <div>
           {Auth.loggedIn() ? (
@@ -34,7 +34,7 @@ const Header = () => {
               <Link className="header-buttons" to="/signup">
                 Signup
               </Link>
-              <Link className="header-buttons" to="/seedbox">
+              <Link className="header-buttons" to="/homepage">
                 Seed Box
               </Link>
             </>
