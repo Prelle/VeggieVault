@@ -1,8 +1,8 @@
 import { Schema, model, Document, ObjectId } from 'mongoose';
 
-interface ISeedBoxEntry extends Document {    
+interface ISeedBoxEntry extends Document {
     plant: ObjectId;
-    variety: string;
+    variety: ObjectId;
     frostHardy: boolean;
     sowDate: Date;
     notes: string;
@@ -21,7 +21,8 @@ const seedBoxEntrySchema = new Schema<ISeedBoxEntry>(
             required: true
         },
         variety: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'PlantVariety',
             required: true,
         },
         frostHardy: {
