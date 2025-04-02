@@ -4,26 +4,35 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
   }
 
-  type Thought {
+  type PlantVariety {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    variety: String!
+    seedDepth: String!
+    seedSpacing: String!
+    waterRequirements: String!
+    sunlightRequirements: String!
   }
 
-  type Comment {
+  type Plant {
     _id: ID
-    commentText: String
-    createdAt: String
+    name: String!
+    varieties: [PlantVariety]!
   }
 
-  input ThoughtInput {
-    thoughtText: String!
-    thoughtAuthor: String!
+  type SeedBoxEntry {
+    _id: ID 
+    plantId: ID!
+    varietyId: String!
+    frostHardy: Boolean!
+    sowDate: String!
+  }
+
+  type SeedBox {
+    _id: ID
+    userId: ID!
+    entries: [SeedBoxEntry]!
   }
 
   input UserInput {
@@ -40,18 +49,12 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
     me: User
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addThought(input: ThoughtInput!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
   }
 `;
 
