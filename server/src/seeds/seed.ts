@@ -37,16 +37,18 @@ const seedDatabase = async (): Promise<void> => {
 
           // Check if the plant and variety is already in the SeedBox
           const randomPlantId = randomPlant._id as Schema.Types.ObjectId;
+          const randomVarietyId = randomVariety._id as Schema.Types.ObjectId;
 
-          // We need a fresh instance of the SeedBox to check the entries
+          // We need a fresh instance of the SeedBox to check the stored entries
           const seedBoxFresh = await SeedBox.findById(seedBox._id);
 
-          if (seedBoxFresh && seedBoxFresh.entries.some(entry => (entry.plant.toString() === randomPlantId.toString() && entry.variety === randomVariety.variety))) {
+          if (seedBoxFresh && seedBoxFresh.entries.some(entry => (entry.plant.toString() === randomPlantId.toString()
+            && entry.variety.toString() === randomVarietyId.toString()))) {
             continue;
           }
 
           // Add the random plant and variety to the user's SeedBox since it's not already there
-          await SeedBox.findByIdAndUpdate(seedBox._id, { $push: { entries: { plant: randomPlantId, variety: randomVariety.variety } } });
+          await SeedBox.findByIdAndUpdate(seedBox._id, { $push: { entries: { plant: randomPlantId, variety: randomVarietyId } } });
           break;
         }
       }
