@@ -1,0 +1,78 @@
+[
+    {
+        "name": "tomato",
+        "varieties": [
+            {
+                "variety": "cherry",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "2-3 feet",
+                "waterRequirements": "1-2 inches per week",
+                "sunlightRequirements": "6-8 hours per day"
+            },
+            {
+                "variety": "roma",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "30-48 inches",
+                "waterRequirements": "1-2 inches per week",
+                "sunlightRequirements": "6-8 hours per day"
+            }
+        ]
+    },
+    {
+        "name": "onion",
+        "varieties": [
+            {
+                "variety": "yellow",
+                "seedDepth": "1/2 inch",
+                "seedSpacing": "4-6 inches",
+                "waterRequirements": "1 inch per week",
+                "sunlightRequirements": "6-8 hours per day"
+            },
+            {
+                "variety": "red",
+                "seedDepth": "1/2 inch",
+                "seedSpacing": "4-6 inches",
+                "waterRequirements": "1 inch per week",
+                "sunlightRequirements": "6-8 hours per day"
+            }
+        ]
+    },
+    {
+        "name": "pepper",
+        "varieties": [
+            {
+                "variety": "bell",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "18-24 inches",
+                "waterRequirements": "1-2 inches per week",
+                "sunlightRequirements": "6-8 hours per day"
+            },
+            {
+                "variety": "jalapeno",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "18-24 inches",
+                "waterRequirements": "1-2 inches per week",
+                "sunlightRequirements": "6-8 hours per day"
+            }
+        ]
+    },
+    {
+        "name": "lettuce",
+        "varieties": [
+            {
+                "variety": "romaine",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "12-18 inches",
+                "waterRequirements": "1 inch per week",
+                "sunlightRequirements": "4-6 hours per day"
+            },
+            {
+                "variety": "butterhead",
+                "seedDepth": "1/4 inch",
+                "seedSpacing": "12-18 inches",
+                "waterRequirements": "1 inch per week",
+                "sunlightRequirements": "4-6 hours per day"
+            }
+        ]
+    }
+]
