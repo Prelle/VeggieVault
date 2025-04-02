@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Farmhouse';
+    src: url('../src/assets/fonts/Farmhouse\ 2.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Roustel';
+    src: url('../src/assets/fonts/Roustel.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  @font-face {
+    font-family: 'Only You';
+    src: url('../src/assets/fonts/Only\ You.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  h1 {
+    font-family: 'Roustel';
+    font-size: 60px;
+    color: rgb(248, 242, 237);
+    margin-left: 40px;
+  }
+
+  h2 {
+    font-family: 'Farmhouse';
+    font-size: 40px;
+    text-align: center;
+    color: rgb(79, 86, 68);
+  }

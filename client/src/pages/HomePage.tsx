@@ -1,9 +1,11 @@
+import '../App.css';
+
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the home page!</p>
+      <h2>Seed Box</h2>
+   
     </div>
   );
 }

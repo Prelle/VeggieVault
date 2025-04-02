@@ -1,0 +1,33 @@
+.header-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1rem;
+    background-color: rgb(79, 86, 68);
+}
+
+  .header-buttons{
+    font-family: 'Farmhouse';
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  
+    font-size: 20px;
+    color:rgb(79, 86, 68);
+    background-color: rgb(248, 242, 237);
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    clip-path: polygon(0% 50%, 15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%);
+    min-width: 100px;
+    max-width: 150px;
+    text-align: center;
+    margin: 0 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-buttons {
+    text-decoration: none; /* Removes underline from the link */
+    color: inherit; /* Ensures the color follows the parent element */
+  }
+  
