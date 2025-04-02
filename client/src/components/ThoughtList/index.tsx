@@ -1,11 +1,11 @@
+// Import `<Link>` component from React Router for internal hyperlinks
 import { Link } from 'react-router-dom';
-import type React from 'react';
 
 interface Thought {
   _id: string;
-  thoughtText: string;
   thoughtAuthor: string;
   createdAt: string;
+  thoughtText: string;
 }
 
 interface ThoughtListProps {
@@ -21,7 +21,8 @@ const ThoughtList: React.FC<ThoughtListProps> = ({ thoughts, title }) => {
   return (
     <div>
       <h3>{title}</h3>
-      {thoughts?.map((thought) => (
+      {thoughts &&
+        thoughts.map((thought) => (
           <div key={thought._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {thought.thoughtAuthor} <br />
@@ -32,6 +33,7 @@ const ThoughtList: React.FC<ThoughtListProps> = ({ thoughts, title }) => {
             <div className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
             </div>
+            {/* Create a link to this thought's page to view its comments using `<Link>` component */}
             <Link
               className="btn btn-primary btn-block btn-squared"
               to={`/thoughts/${thought._id}`}

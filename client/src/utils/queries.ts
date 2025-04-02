@@ -1,7 +1,20 @@
-// import gql from @apollo/client
 import { gql } from '@apollo/client';
 
-// Use the gql function to access the thoughts entrypoint and export it
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+      }
+    }
+  }
+`;
+
 export const QUERY_THOUGHTS = gql`
   query getThoughts {
     thoughts {
@@ -13,7 +26,6 @@ export const QUERY_THOUGHTS = gql`
   }
 `;
 
-// QUERY_SINGLE_THOUGHT retrieves a single thought along with its associated comments, based on the provided thoughtId variable.
 export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleThought($thoughtId: ID!) {
     thought(thoughtId: $thoughtId) {
@@ -24,6 +36,23 @@ export const QUERY_SINGLE_THOUGHT = gql`
       comments {
         _id
         commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      email
+      thoughts {
+        _id
+        thoughtText
+        thoughtAuthor
         createdAt
       }
     }
