@@ -18,7 +18,6 @@ const plantVarietySchema = new Schema<IPlantVariety>(
         variety: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
         },
         seedDepth: {
@@ -63,6 +62,7 @@ const plantSchema = new Schema<IPlant>(
 );
 
 
+const PlantVariety = model<IPlantVariety>('PlantVariety', plantVarietySchema);
 const Plant = model<IPlant>('Plant', plantSchema);
 
-export default Plant;
+export { Plant, PlantVariety };
