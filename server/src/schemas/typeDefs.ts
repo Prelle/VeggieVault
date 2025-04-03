@@ -50,6 +50,8 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
+    plants: [Plant]
+    seedBoxes: [SeedBox]
   }
 
   type Mutation {
