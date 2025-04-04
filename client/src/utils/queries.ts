@@ -25,3 +25,18 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_TOP_PLANTS = gql`
+  query topPlants {
+    plants(limit: 10) {
+      name
+      varieties {
+        variety
+        seedDepth
+        seedSpacing
+        waterRequirements
+        sunlightRequirements
+      }
+    }
+  }
+  `;
