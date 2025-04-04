@@ -1,15 +1,28 @@
-import React from 'react';
-import './style.css'; // Make sure this file includes the appropriate styles
+import React, { useState } from 'react';
+import './style.css'; 
+
 
 interface PopsicleStickButtonProps {
   title: string;
+  children: React.ReactNode;
 }
 
-const PopsicleStickButton: React.FC<PopsicleStickButtonProps> = ({ title }) => {
+const PopsicleStickButton: React.FC<PopsicleStickButtonProps> = ({ title, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <button className="homepage-buttons">
-      {title}
-    </button>
+    <div className="dropdown-container">
+      <button className="homepage-buttons" onClick={toggleDropdown}>
+        {title}
+      </button>
+      <div className={`dropdown-card ${isOpen ? 'open' : ''}`}>
+        {children}
+      </div>
+    </div>
   );
 };
 
