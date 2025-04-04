@@ -50,7 +50,7 @@ const typeDefs = `
     users: [User]
     user(username: String!): User
     me: User
-    plants: [Plant]
+    plants(limit: Int!): [Plant]
     seedBoxes: [SeedBox]
   }
 
