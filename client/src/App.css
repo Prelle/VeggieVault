@@ -33,3 +33,16 @@
     text-align: center;
     color: rgb(79, 86, 68);
   }
+
+  .homepage-description{
+  font-size: 14px; 
+  color: #3e4d35; 
+  line-height: 1; 
+  font-family: 'Poppins', sans-serif; 
+  background: #f4f1ea; 
+  padding: 12px;
+  max-width: 600px;
+  margin: 10px auto; 
+  text-align: center; 
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}

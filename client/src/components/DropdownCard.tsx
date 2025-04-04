@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './DropdownCard.css'; // we'll define styles here
+import './style.css';
 
 const DropdownCard = () => {
   const [isOpen, setIsOpen] = useState(false);

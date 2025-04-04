@@ -12,9 +12,11 @@ const Header = () => {
   return (
     <header>
       <div className="container header-container">
-        {/* Title on the left */}
+       
         <div>
+        <Link to="/" className="site-title-link">
           <h1>Veggie Vault</h1>
+          </Link>
         </div>
         <div>
           {Auth.loggedIn() ? (
@@ -34,8 +36,8 @@ const Header = () => {
               <Link className="header-buttons" to="/signup">
                 Signup
               </Link>
-              <Link className="header-buttons" to="/">
-                Seed Box
+              <Link className="header-buttons" to="/myseedbox">
+                My Seed Box
               </Link>
             </>
           )}
