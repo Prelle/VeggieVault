@@ -1,19 +1,25 @@
 import '../App.css';
 import PopsicleStickButton from '../components/PopsicleSticks';
-import plantData from '../../../server/src/seeds/plantData.json';
+import { useQuery } from "@apollo/client";
+import { QUERY_TOP_PLANTS } from "../utils/queries";
 
 const HomePage = () => {
+  const { loading, data } = useQuery(QUERY_TOP_PLANTS);
+
+  const plantData = data?.plants || [];
+
   // Flatten all varieties across all plants
-  const allVarieties = plantData.flatMap((plant) =>
-    plant.varieties.map((variety) => ({
+  const allVarieties = plantData.flatMap((plant:any) =>
+    plant.varieties.map((variety:any) => ({
       ...variety,
       plantType: plant.name, // still available if you want it later
     }))
   );
   return (
     <div className="main-container">
-      <h2>Seed Box</h2>
-      {allVarieties.map((variety, index) => {
+      <h2>Seed Box</h2>      
+      {loading ? (<div>Loading...</div>) :     
+        allVarieties.map((variety:any, index:any) => {
         const formattedTitle = `${(variety.variety)} ${(variety.plantType)}`;
         return (
           <PopsicleStickButton
