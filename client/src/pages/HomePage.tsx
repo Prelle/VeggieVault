@@ -8,16 +8,20 @@ const HomePage = () => {
 
   const plantData = data?.plants || [];
 
-  // Flatten all varieties across all plants
+  
   const allVarieties = plantData.flatMap((plant:any) =>
     plant.varieties.map((variety:any) => ({
       ...variety,
-      plantType: plant.name, // still available if you want it later
+      plantType: plant.name, 
     }))
   );
   return (
     <div className="main-container">
-      <h2>Seed Box</h2>      
+      <div className="homepage-description">
+        <p>Create an account or login to build your personal seed box! </p>
+        <p>Easily search for plants, add them to your Seed Box, and update or remove them as you go! </p>
+        <p>Tap on a plant tag below to open a Seed Packet with all the details you need—like seed depth, spacing, and sunlight requirements. </p>
+        </div>      
       {loading ? (<div>Loading...</div>) :     
         allVarieties.map((variety:any, index:any) => {
         const formattedTitle = `${(variety.variety)} ${(variety.plantType)}`;
