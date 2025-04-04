@@ -46,3 +46,11 @@
   text-align: center; 
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.main-container {
+  background-image: url('./assets/images/background.png');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+}
