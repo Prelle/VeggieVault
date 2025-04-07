@@ -100,32 +100,6 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-    // savePlant: async (_parent: any, { input }: { input: IBookInput }, context: IUserContext): Promise<any> => {
-    //   if (context.user) {
-    //     const updatedUser = await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $push: { savedBooks: input } },
-    //       { new: true }
-    //     );
-
-    //     return updatedUser;
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
-    // removeBook: async (_parent: any, { bookId }: { bookId: string }, context: IUserContext): Promise<any> => {
-    //   if (context.user) {
-    //     const updatedUser = await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { savedBooks: { bookId } } },
-    //       { new: true }
-    //     );
-
-    //     return updatedUser;
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // }
   },
 };
 
