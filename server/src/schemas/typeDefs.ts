@@ -58,6 +58,8 @@ const typeDefs = `
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
+    savePlant(input: !): User
+    removePlant(plantId: ID!): User
   }
 `;
 
