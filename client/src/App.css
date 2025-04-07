@@ -88,7 +88,7 @@ body{
   min-width: 100px;
   max-width: 150px;
   text-align: center;
-  margin: 0 30px 0px 0px;
+  margin: 0 80px 0px 0px;
   border: none;
   outline: none;
   text-decoration: none;
@@ -99,4 +99,10 @@ body{
   border: none;
   outline: none;
   text-decoration: none;
+}
+
+.notes-box {
+  border: 2px solid rgb(79, 86, 68);
+  padding: 8px 12px;
+  margin-top: 8px;
 }

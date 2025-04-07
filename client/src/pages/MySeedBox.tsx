@@ -38,6 +38,17 @@ const MySeedBox = () => {
                 <li><strong>Seed Spacing:</strong> {variety.seedSpacing}</li>
                 <li><strong>Water:</strong> {variety.waterRequirements}</li>
                 <li><strong>Sunlight:</strong> {variety.sunlightRequirements}</li>
+                <li><strong>Frost Hardy:</strong> {variety.frostHardy ? 'Yes' : 'No'}</li>
+                {variety.sowDate && (
+                  <li><strong>Sow Date:</strong> {new Date(variety.sowDate).toLocaleDateString()}</li>
+                )}
+                {variety.notes && (
+                  <li>
+                    <div className="notes-box">
+                      <strong>Notes:</strong> {variety.notes}
+                    </div>
+                  </li>
+                )}
               </ul>
             </PopsicleStickButton>
           );
