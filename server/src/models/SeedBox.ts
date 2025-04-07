@@ -3,9 +3,9 @@ import { Schema, model, Document, ObjectId } from 'mongoose';
 interface ISeedBoxEntry extends Document {
     plant: ObjectId;
     variety: ObjectId;
-    frostHardy: boolean;
-    sowDate: Date;
-    notes: string;
+    frostHardy?: boolean;
+    sowDate?: string;
+    notes?: string;
 }
 
 interface ISeedBox extends Document {
@@ -30,7 +30,7 @@ const seedBoxEntrySchema = new Schema<ISeedBoxEntry>(
             required: false,
         },
         sowDate: {
-            type: Date,
+            type: String,
             required: false,
         },
         notes: {

@@ -41,7 +41,7 @@ export const QUERY_TOP_PLANTS = gql`
   }
   `;
 
-  export const SEARCH_PLANTS = gql`
+export const SEARCH_PLANTS = gql`
     query SearchPlants($searchQuery: String) {
       searchPlants(searchQuery: $searchQuery) {
         _id

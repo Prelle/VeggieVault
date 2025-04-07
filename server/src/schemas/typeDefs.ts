@@ -23,15 +23,16 @@ const typeDefs = `
 
   type SeedBoxEntry {
     _id: ID 
-    plantId: ID!
-    varietyId: String!
-    frostHardy: Boolean!
-    sowDate: String!
+    plant: ID!
+    variety: ID!
+    frostHardy: Boolean
+    sowDate: String
+    notes: String
   }
 
   type SeedBox {
     _id: ID
-    userId: ID!
+    user: ID!
     entries: [SeedBoxEntry]!
   }
 
@@ -53,6 +54,7 @@ const typeDefs = `
     plants(limit: Int!): [Plant]
     searchPlants(searchQuery: String): [Plant!]!
     seedBoxes: [SeedBox]
+    mySeedBox: SeedBox
   }
 
   type Mutation {
