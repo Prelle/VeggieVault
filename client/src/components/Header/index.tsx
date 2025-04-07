@@ -29,7 +29,7 @@ const Header = () => {
               </button>
             </>
           ) : (
-            <>
+            <div className="header-buttons-container">
               <Link className="header-buttons" to="/login">
                 Login
               </Link>
@@ -39,7 +39,7 @@ const Header = () => {
               <Link className="header-buttons" to="/myseedbox">
                 My Seed Box
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
