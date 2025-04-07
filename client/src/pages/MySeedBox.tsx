@@ -16,7 +16,7 @@ const MySeedBox = () => {
     }))
   );
   return (
-    <div className="main-container">
+    <div className="sub-container">
       <h2>My Seed Box</h2>
 
       <Link to="/search">

@@ -16,7 +16,7 @@ const HomePage = () => {
     }))
   );
   return (
-    <div className="main-container">
+    <div className="sub-container">
       <div className="homepage-description">
         <p>Create an account or login to build your personal seed box! </p>
         <p>Easily search for plants, add them to your Seed Box, and update or remove them as you go! </p>
