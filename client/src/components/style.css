@@ -31,7 +31,7 @@
     color: inherit;
 }
   
-  .main-container {
+  .sub-container {
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -72,7 +72,10 @@
     padding-top: 10px; 
     margin-top: auto;
     width: 100%;
+    bottom: 0;
+    left: 0;
   }
+  
   .dropdown-container {
     display: flex;
     flex-direction: column;

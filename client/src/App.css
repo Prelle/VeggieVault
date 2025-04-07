@@ -1,3 +1,9 @@
+button {
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
 @font-face {
     font-family: 'Farmhouse';
     src: url('../src/assets/fonts/Farmhouse\ 2.otf') format('truetype');
@@ -47,10 +53,50 @@
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+body{
+  height: 100%;
+  margin: 0;
+}
+
 .main-container {
   background-image: url('./assets/images/background.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
-  min-height: 100vh; 
+  min-height: 100vh;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.button-wrapper {
+  position: relative;
+}
+
+.add-seed-button {
+  font-family: 'Farmhouse';
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  
+  font-size: 20px;
+  color: rgb(248, 242, 237);
+  background-color: rgb(179, 93, 65);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  clip-path: polygon(0% 50%, 15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%);
+  min-width: 100px;
+  max-width: 150px;
+  text-align: center;
+  margin: 0 30px 0px 0px;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+}
+.add-seed-button:hover {
+  border: none;
+  outline: none;
+  text-decoration: none;
 }
