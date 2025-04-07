@@ -2,10 +2,21 @@ import '../App.css';
 import PopsicleStickButton from '../components/PopsicleSticks';
 import { useQuery } from "@apollo/client";
 import { QUERY_TOP_PLANTS } from "../utils/queries";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from "../utils/auth";
+import { useEffect } from "react";
 
 const MySeedBox = () => {
+  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_TOP_PLANTS);
+
+  useEffect(() => {
+      // Check if the user is authenticated
+      if (!Auth.loggedIn()) {
+        // If not authenticated, redirect to the login page
+        navigate("/login");
+      }
+    }, []);
 
   const plantData = data?.plants || [];
 

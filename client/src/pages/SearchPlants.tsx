@@ -38,6 +38,35 @@ const SearchPlants = () => {
     }
   };
 
+  const searchTerm = searchQuery.toLowerCase();
+
+  const sortedVarieties = plants.flatMap((plant: any) =>
+    plant.varieties.map((variety: any) => ({
+      ...variety,
+      plantName: plant.name,
+      fullName: `${variety.variety} ${plant.name}`.toLowerCase(),
+    })))
+    .sort((a, b) => {
+      const aName = a.fullName;
+      const bName = b.fullName;
+
+      const aStarts = aName.startsWith(searchTerm);
+      const bStarts = bName.startsWith(searchTerm);
+
+      if (aStarts && !bStarts) return -1;
+      if (!aStarts && bStarts) return 1;
+
+      const aIncludes = aName.includes(searchTerm);
+      const bIncludes = bName.includes(searchTerm);
+
+      if (aIncludes && !bIncludes) return -1;
+      if (!aIncludes && bIncludes) return 1;
+
+      return aName.localeCompare(bName);
+    });
+
+
+
   return (
     <div>
       <h1>Search Plants</h1>
@@ -56,15 +85,15 @@ const SearchPlants = () => {
       {noResults && <p>No plants found for "{searchQuery}".</p>}
 
       <ul>
-        {plants.map((plant: { _id: string; name: string; varieties: { variety: string }[] }) => (
-          <li key={plant._id}>
-            <h2>{plant.name}</h2>
-            <p>
-              Varieties:{" "}
-              {plant.varieties.map((v) => v.variety).join(", ")}
-            </p>
-          </li>
-        ))}
+        {sortedVarieties.map((variety: any, index: number) => {
+          const formattedTitle = `${variety.variety} ${variety.plantName}`;
+          return (
+            <li key={`${formattedTitle}-${index}`}>
+              <h2>{formattedTitle}</h2>
+              {/* <button onClick={() => handleSave(variety)}>Save</button> */}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

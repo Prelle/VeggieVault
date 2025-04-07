@@ -40,7 +40,12 @@ const typeDefs = `
     email: String!
     password: String!
   }
-  
+
+  input SavedPlantInput {
+    plantName: String!
+    variety: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -58,9 +63,9 @@ const typeDefs = `
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    savePlant(input: !): User
-    removePlant(plantId: ID!): User
+    savePlant(input: SavedPlantInput!): SavedPlant
   }
 `;
 
 export default typeDefs;
+
