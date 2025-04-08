@@ -1,6 +1,5 @@
 import { Schema, model, Document } from 'mongoose';
 
-// Define an interface for the User document
 interface IPlantVariety extends Document {
     variety: string;
     seedDepth: string;
@@ -9,13 +8,11 @@ interface IPlantVariety extends Document {
     sunlightRequirements: string;
 }
 
-// Define the schema for the User document
 const plantVarietySchema = new Schema<IPlantVariety>(
     {
         variety: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
         },
         seedDepth: {
@@ -42,7 +39,6 @@ const plantVarietySchema = new Schema<IPlantVariety>(
     }
 );
 
-
 const PlantVariety = model<IPlantVariety>('PlantVariety', plantVarietySchema);
 
-export default PlantVariety;
+export default PlantVariety

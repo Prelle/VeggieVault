@@ -1,14 +1,14 @@
 import '../App.css';
 import PopsicleStickButton from '../components/PopsicleSticks';
 import { useQuery } from "@apollo/client";
-import { QUERY_TOP_PLANTS } from "../utils/queries";
+import { QUERY_MY_SEEDBOX } from '../utils/queries';
 import { Link, useNavigate } from 'react-router-dom';
 import Auth from "../utils/auth";
 import { useEffect } from "react";
 
 const MySeedBox = () => {
   const navigate = useNavigate();
-  const { loading, data } = useQuery(QUERY_TOP_PLANTS);
+  const { loading, data } = useQuery(QUERY_MY_SEEDBOX);
 
   useEffect(() => {
       // Check if the user is authenticated
@@ -18,14 +18,22 @@ const MySeedBox = () => {
       }
     }, []);
 
-  const plantData = data?.plants || [];
+  const mySeedBox = data?.mySeedBox || [];
 
-  const allVarieties = plantData.flatMap((plant: any) =>
-    plant.varieties.map((variety: any) => ({
-      ...variety,
-      plantType: plant.name,
-    }))
-  );
+  const allEntries = (mySeedBox && mySeedBox.entries?.length > 0 ? mySeedBox.entries.map((entry: any) =>
+  ({
+    plantType: entry.plant.name,
+    variety: entry.variety.variety,
+    seedDepth: entry.variety.seedDepth,
+    seedSpacing: entry.variety.seedSpacing,
+    waterRequirements: entry.variety.waterRequirements,
+    sunlightRequirements: entry.variety.sunlightRequirements,
+    frostHardy: entry.frostHardy,
+    sowDate: entry.sowDate,
+    notes: entry.notes,
+  }
+  )) : []);
+
   return (
     <div className="sub-container">
       <h2>My Seed Box</h2>
@@ -38,26 +46,26 @@ const MySeedBox = () => {
       </div>
 
       {loading ? (<div>Loading...</div>) :
-        allVarieties.map((variety: any, index: any) => {
-          const formattedTitle = `${(variety.variety)} ${(variety.plantType)}`;
+        allEntries.map((entry: any, index: any) => {
+          const formattedTitle = `${(entry.variety)} ${(entry.plantType)}`;
           return (
             <PopsicleStickButton
-              key={`${variety.variety}${index}`}
+              key={`${entry.variety}${index}`}
               title={formattedTitle}
             >
               <ul className="seed-packet-details">
-                <li><strong>Seed Depth:</strong> {variety.seedDepth}</li>
-                <li><strong>Seed Spacing:</strong> {variety.seedSpacing}</li>
-                <li><strong>Water:</strong> {variety.waterRequirements}</li>
-                <li><strong>Sunlight:</strong> {variety.sunlightRequirements}</li>
-                <li><strong>Frost Hardy:</strong> {variety.frostHardy ? 'Yes' : 'No'}</li>
-                {variety.sowDate && (
-                  <li><strong>Sow Date:</strong> {new Date(variety.sowDate).toLocaleDateString()}</li>
+                <li><strong>Seed Depth:</strong> {entry.seedDepth}</li>
+                <li><strong>Seed Spacing:</strong> {entry.seedSpacing}</li>
+                <li><strong>Water:</strong> {entry.waterRequirements}</li>
+                <li><strong>Sunlight:</strong> {entry.sunlightRequirements}</li>
+                <li><strong>Frost Hardy:</strong> {entry.frostHardy ? 'Yes' : 'No'}</li>
+                {entry.sowDate && (
+                  <li><strong>Sow Date:</strong> {new Date(entry.sowDate).toLocaleDateString()}</li>
                 )}
-                {variety.notes && (
+                {entry.notes && (
                   <li>
                     <div className="notes-box">
-                      <strong>Notes:</strong> {variety.notes}
+                      <strong>Notes:</strong> {entry.notes}
                     </div>
                   </li>
                 )}

@@ -23,15 +23,16 @@ const typeDefs = `
 
   type SeedBoxEntry {
     _id: ID 
-    plantId: ID!
-    varietyId: String!
-    frostHardy: Boolean!
-    sowDate: String!
+    plant: Plant!
+    variety: PlantVariety
+    frostHardy: Boolean
+    sowDate: String
+    notes: String
   }
 
   type SeedBox {
     _id: ID
-    userId: ID!
+    user: ID!
     entries: [SeedBoxEntry]!
   }
 
@@ -58,14 +59,16 @@ const typeDefs = `
     plants(limit: Int!): [Plant]
     searchPlants(searchQuery: String): [Plant!]!
     seedBoxes: [SeedBox]
+    mySeedBox: SeedBox
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
-    login(email: String!, password: String!): Auth
-    savePlant(input: SavedPlantInput!): SavedPlant
+    login(email: String!, password: String!): Auth    
   }
 `;
 
 export default typeDefs;
 
+// Removed from above:
+// savePlant(input: SavedPlantInput!): SavedPlant

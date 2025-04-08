@@ -64,6 +64,19 @@ const resolvers = {
       return SeedBox.find();
     },
 
+    mySeedBox: async (_parent: any, _args: any, context: any) => {
+      if (context.user) {
+        const seedBox = await SeedBox.findOne({ user: context.user._id })
+          .populate('entries.plant')
+          .populate('entries.variety')
+
+        if (seedBox) {
+          return seedBox
+        }
+        return null;
+      }
+      throw new AuthenticationError('Could not authenticate user.');
+    }
   },
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs) => {
