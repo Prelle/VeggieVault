@@ -1,5 +1,5 @@
 import db from '../config/connection.js';
-import { User, Plant, SeedBox } from '../models/index.js';
+import { User, PlantVariety, Plant, SeedBox } from '../models/index.js';
 import cleanDB from './cleanDB.js';
 import { Schema } from 'mongoose';
 
@@ -13,13 +13,21 @@ const seedDatabase = async (): Promise<void> => {
 
     // Seed Users and Plants
     await User.create(userData);
-    await Plant.create(plantData);
+
+    for (const plant of plantData) {
+      // Create PlantVarieties first and store their IDs in the plant object
+      const varieties = await PlantVariety.create(plant.varieties);
+      const plantVarieties = varieties.map(variety => variety._id);
+
+      // Create the plant with the variety IDs
+      await Plant.create({ name: plant.name, varieties: plantVarieties });
+    }
 
     console.log('Users and Plants seeded successfully!');
 
     // Grab the data so we have IDs to work with
     const users = await User.find({});
-    const plants = await Plant.find({});
+    const plants = await Plant.find({}).populate('varieties');
 
     console.log('Creating SeedBoxes...');
 
@@ -37,7 +45,7 @@ const seedDatabase = async (): Promise<void> => {
 
           // Check if the plant and variety is already in the SeedBox
           const randomPlantId = randomPlant._id as Schema.Types.ObjectId;
-          const randomVarietyId = randomVariety._id as Schema.Types.ObjectId;
+          const randomVarietyId = randomVariety as Schema.Types.ObjectId;
 
           // We need a fresh instance of the SeedBox to check the stored entries
           const seedBoxFresh = await SeedBox.findById(seedBox._id);

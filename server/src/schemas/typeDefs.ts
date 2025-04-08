@@ -64,10 +64,11 @@ const typeDefs = `
 
   type Mutation {
     addUser(input: UserInput!): Auth
-    login(email: String!, password: String!): Auth
-    savePlant(input: SavedPlantInput!): SavedPlant
+    login(email: String!, password: String!): Auth    
   }
 `;
 
 export default typeDefs;
 
+// Removed from above:
+// savePlant(input: SavedPlantInput!): SavedPlant

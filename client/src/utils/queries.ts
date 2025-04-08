@@ -52,3 +52,26 @@ export const SEARCH_PLANTS = gql`
       }
     }
   `;
+
+export const QUERY_MY_SEEDBOX = gql`
+  query MySeedBox {
+    mySeedBox {
+      user
+      entries {            
+        plant {
+          name
+        }
+        variety {
+          variety
+          seedDepth
+          seedSpacing
+          waterRequirements
+          sunlightRequirements
+        }
+        frostHardy
+        sowDate
+        notes
+      }
+    }  
+  }
+`
