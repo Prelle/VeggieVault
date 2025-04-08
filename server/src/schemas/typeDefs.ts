@@ -23,8 +23,8 @@ const typeDefs = `
 
   type SeedBoxEntry {
     _id: ID 
-    plant: ID!
-    variety: ID!
+    plant: Plant!
+    variety: PlantVariety
     frostHardy: Boolean
     sowDate: String
     notes: String
