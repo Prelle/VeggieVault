@@ -173,3 +173,36 @@ body{
   font-family: 'Poppins';
   font-size: 16px;
 }
+@media (max-width: 768px) {
+  .main-container {
+    padding: 10px;
+  }
+
+  .form-card {
+    padding: 1rem;
+    margin-top: -160px;
+  }
+
+  .form-title {
+    font-size: 24px;
+  }
+
+  .form-input {
+    height: 20px; 
+    font-size: 16px;
+  }
+
+  .submit-button {
+    font-size: 18px;
+    padding: 10px 15px;
+  }
+
+  h1 {
+    font-size: 45px; 
+    margin-left: 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+}
+}

@@ -29,12 +29,13 @@ const MySeedBox = () => {
   return (
     <div className="sub-container">
       <h2>My Seed Box</h2>
-
+      <div className="add-seed-container">
       <Link to="/search">
         <button className="add-seed-button">
           Add Seed
         </button>
       </Link>
+      </div>
 
       {loading ? (<div>Loading...</div>) :
         allVarieties.map((variety: any, index: any) => {
